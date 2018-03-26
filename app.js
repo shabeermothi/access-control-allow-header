@@ -1,4 +1,5 @@
 const restify = require('restify');
+const restifyCors = require('restify-cors-middleware');
 
 const respond = (req, res, next) => {
     res.send({
@@ -9,13 +10,14 @@ const respond = (req, res, next) => {
 
 const server = restify.createServer();
 
-server.use((req, res, next) => {
-    res.header("Access-Control-Allow-Headers", "X-Foo-Bar");
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
+const cors = restifyCors({
+    preflightMaxAge: 5,
+    allowHeaders: ['X-Foo-Bar'],
+    exposeHeaders: ['X-Foo-Bar']
 });
 
-server.use(restify.CORS());
+server.pre(cors.preflight);
+server.use(cors.actual);
 
 server.get('/:task/:name', respond);
 

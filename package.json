@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "restify": "^7.0.0"
+    "restify": "^7.0.0",
+    "restify-cors-middleware": "^1.1.0"
   }
 }
