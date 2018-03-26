@@ -11,6 +11,7 @@ const server = restify.createServer();
 
 server.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", "X-Foo-Bar");
+    res.header("Access-Control-Allow-Origin", "*");
     next();
 });
 
