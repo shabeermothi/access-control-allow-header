@@ -15,6 +15,8 @@ server.use((req, res, next) => {
     next();
 });
 
+server.use(restify.CORS());
+
 server.get('/:task/:name', respond);
 
 server.listen('9000', () => {
